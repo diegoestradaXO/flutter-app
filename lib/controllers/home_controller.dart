@@ -6,9 +6,21 @@ class HomeController extends GetxController{
 
   get counter => _counter;
 
+  @override
+  void onInit() {
+    super.onInit();
+    print("init"); // widget saved on memory, not rendered
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    print("ready"); // widget already rendered
+  }
+
   void increment(){
     this._counter++;
-    update();
+    update(['text']); // here I can specify wich element on the view I want to re-render
   }
 
 }
