@@ -15,23 +15,52 @@ class TaskPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              Padding( // Back Arrow and Title TextField
                 padding: const EdgeInsets.only(top: 24.0, bottom: 10.0),
                 child: Row(
                   children: [
-                    InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Image(
-                            image:
-                                AssetImage("assets/images/back_arrow_icon.png"),
-                          ),
+                    InkWell( // Back Arrow Icon
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Image.asset(
+                          "assets/images/arrow.png",
+                         height: 20,
+                         width: 20,
                         ),
                       ),
+                    ),
+                    Expanded( // Title Text Field
+                      child: TextField(
+                        onSubmitted: (value){
+                          print(value);
+                        },
+                        decoration: InputDecoration(
+                        hintText: 'Write a title here ...',
+                        border: InputBorder.none,
+                      ),
+                      style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF2e2f43)),
+                      ),
+                    ),
                   ],
+                ),
+              ),
+              Padding( // Description Text Field
+                padding: EdgeInsets.only(bottom: 10.0),
+                child: TextField(
+                  onSubmitted: (value){
+                    print(value);
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Enter a description for the task ...',
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 24.0)
+                  ),
                 ),
               )
             ],
