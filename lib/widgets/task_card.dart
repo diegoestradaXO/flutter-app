@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class TaskCard extends StatelessWidget {
   // final String placeholder;
@@ -31,7 +32,7 @@ class TaskCard extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 10.0),
           child: Text(
-          description ?? ' ',
+          description ?? 'noDescriptonTask'.tr,
           style: TextStyle(
             fontSize: 16,
             height: 1.5

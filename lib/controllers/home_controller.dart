@@ -1,11 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:my_app/l10n/l10n.dart';
+import 'package:my_app/models/task.dart';
 
 
 class HomeController extends GetxController{
   int _counter = 0;
-
+  List<Task> _tasks = [];
   get counter => _counter;
+
+  final _locales = [
+    {'name':'🇺🇸 English','locale': Locale('en')},
+    {'name':'🇪🇸 Spanish','locale': Locale('es')},
+  ];
+
+  get locales => _locales;
 
   @override
   void onInit() {
@@ -19,9 +29,9 @@ class HomeController extends GetxController{
     print("ready"); // widget already rendered
   }
 
-  void increment(){
-    this._counter++;
-    update(['text']); // here I can specify wich element on the view I want to re-render
+  updateLocale(Locale locale){
+    Get.back();
+    Get.updateLocale(locale);
   }
 
 }

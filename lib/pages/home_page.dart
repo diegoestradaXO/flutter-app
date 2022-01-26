@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -8,12 +9,37 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/widgets/task_card.dart';
 
 class HomePage extends StatelessWidget {
+  
+  showLocaleDialog(BuildContext context){
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text('Choose your language'),
+        content: Container(
+          width: double.maxFinite,
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemBuilder:(context, index) => InkWell(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Text(HomeController().locales[index]['name'].toString()),
+              ),
+              onTap: (){HomeController().updateLocale(HomeController().locales[index]['locale'] as Locale);},
+            ), 
+            separatorBuilder: (context, index) => Divider(color: Colors.black,), 
+            itemCount: 2
+          ),
+        )
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    var tr = AppLocalizations.of(context);
     return GetBuilder<HomeController>(
         init: HomeController(),
         builder: (_) {
+          var tr = AppLocalizations.of(context);
           return Scaffold(
             body: SafeArea(
               child: Container(
@@ -32,29 +58,43 @@ class HomePage extends StatelessWidget {
                             "assets/images/lapiz.png",
                             height: 30,
                             width: 30,
-                          ),
+                            ),
                           ),
                           Text(
-                            'My tasks',
+                          'homePageTitle'.tr,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                             fontSize: 30.0, fontWeight: FontWeight.bold),
                           ),
+                          Container(
+                            margin: EdgeInsets.only(
+                              left: 70
+                            ),
+                            child: ElevatedButton(
+                            onPressed: (){
+                              showLocaleDialog(context);
+                            },
+                            child: Icon(Icons.language)
+                          ),
+                          )
                         ],
                       )
                     ),
                     Expanded(
                       child: ScrollConfiguration(
                         behavior: NoGlowBehaviour(),
-                        child: ListView(
-                        children: [
-                          TaskCard(title: 'Task #1', description: 'this is the description',),
-                          TaskCard(title: 'Task #2', description: 'this is the description',),
-                          TaskCard(title: 'Task #3', description: 'this is the description',),
-                          TaskCard(title: 'Task #4', description: 'this is the description',),
-                          TaskCard(title: 'Task #5', description: 'this is the description',)
-                        ],
-                      ),
+                        child: GetBuilder<HomeController>(
+                          id: 'taskList',
+                          builder: (_) => ListView(
+                            children: [
+                              TaskCard(title: 'Continuar curso de Fernando Herrera', description: 'voy por el capitulo 09',),
+                              TaskCard(title: 'Sacar la basura',),
+                              TaskCard(title: 'Seguir curso de GetX', description: 'es en meduu.app y voy por el 5to video',),
+                              TaskCard(title: 'Pasear al perro' ),
+                              TaskCard(title: 'Enviar ensayo', description: '10 paginas minimo',)
+                            ],
+                          ),
+                        ),
                       )
                     ),
                   ],
@@ -63,7 +103,6 @@ class HomePage extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                // _.increment();
                 Get.to(() => TaskPage(), transition: Transition.fadeIn);
               },
               child: Icon(Icons.add),

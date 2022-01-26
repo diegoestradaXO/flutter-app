@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'home_page.dart';
 
 class TaskPage extends StatelessWidget {
@@ -9,6 +9,7 @@ class TaskPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -38,9 +39,9 @@ class TaskPage extends StatelessWidget {
                           print(value);
                         },
                         decoration: InputDecoration(
-                        hintText: 'Write a title here ...',
+                        hintText: 'taskTitleHint'.tr,
                         border: InputBorder.none,
-                      ),
+                        ),
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
@@ -57,7 +58,7 @@ class TaskPage extends StatelessWidget {
                     print(value);
                   },
                   decoration: InputDecoration(
-                    hintText: 'Enter a description for the task ...',
+                    hintText: 'taskDescHint'.tr,
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.symmetric(horizontal: 24.0)
                   ),

@@ -1,6 +1,14 @@
 {
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-      "description": "The conventional newborn programmer greeting"
+    "homePageTitle": "My Tasks",
+    "@homePageTitle": {
+      "description": "Title for home page"
+    },
+    "taskPageTitleHint": "Write a title here ...",
+    "@taskPageTitleHint": {
+      "description": "Placeholder for title textfield"
+    },
+    "taskPageDescriptionHint": "Enter a description for the task ...",
+    "@taskPageDescriptionHint": {
+      "description": "Placeholder for description textfield"
     }
 }
