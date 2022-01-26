@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:my_app/controllers/home_controller.dart';
-import 'package:get/route_manager.dart';
 import 'package:my_app/pages/task_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/widgets/task_card.dart';
@@ -14,7 +11,7 @@ class HomePage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Choose your language'),
+        title: Text('languageSelect'.tr),
         content: Container(
           width: double.maxFinite,
           child: ListView.separated(
@@ -24,7 +21,7 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: Text(HomeController().locales[index]['name'].toString()),
               ),
-              onTap: (){HomeController().updateLocale(HomeController().locales[index]['locale'] as Locale);},
+              onTap: (){HomeController().changeLanguage(HomeController().locales[index]['locale'] as Locale);},
             ), 
             separatorBuilder: (context, index) => Divider(color: Colors.black,), 
             itemCount: 2
@@ -43,11 +40,10 @@ class HomePage extends StatelessWidget {
           return Scaffold(
             body: SafeArea(
               child: Container(
-                // color: Color(0xffF0F0EB),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    Container( // Note Image, Page Title and Language Button
                       margin: EdgeInsets.only(bottom: 20.0, top: 20.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -80,18 +76,18 @@ class HomePage extends StatelessWidget {
                         ],
                       )
                     ),
-                    Expanded(
+                    Expanded( // Task List
                       child: ScrollConfiguration(
                         behavior: NoGlowBehaviour(),
                         child: GetBuilder<HomeController>(
                           id: 'taskList',
                           builder: (_) => ListView(
                             children: [
-                              TaskCard(title: 'Continuar curso de Fernando Herrera', description: 'voy por el capitulo 09',),
-                              TaskCard(title: 'Sacar la basura',),
-                              TaskCard(title: 'Seguir curso de GetX', description: 'es en meduu.app y voy por el 5to video',),
-                              TaskCard(title: 'Pasear al perro' ),
-                              TaskCard(title: 'Enviar ensayo', description: '10 paginas minimo',)
+                              TaskCard(title: 'Continue with Fernando\'s Flutter course', description: 'currently on chapter 09',),
+                              TaskCard(title: 'Take out the trash',),
+                              TaskCard(title: 'Continue with GetX course', description: 'on meedu.app, video 05',),
+                              TaskCard(title: 'Go for a walk with my dog' ),
+                              TaskCard(title: 'Submit my essay', description: '10 pages minimum',)
                             ],
                           ),
                         ),
@@ -111,8 +107,3 @@ class HomePage extends StatelessWidget {
         });
   }
 }
-
-              // child: GetBuilder<HomeController>(
-              //   id: 'text',
-              //   builder: (_) => Text(_.counter.toString()),
-              // ),

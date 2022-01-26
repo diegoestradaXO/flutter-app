@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl_standalone.dart';
 import 'package:my_app/l10n/l10n.dart';
 import 'package:my_app/models/task.dart';
 
 
 class HomeController extends GetxController{
-  int _counter = 0;
-  List<Task> _tasks = [];
-  get counter => _counter;
 
+  final GetStorage data = GetStorage();
+  
   final _locales = [
     {'name':'🇺🇸 English','locale': Locale('en')},
     {'name':'🇪🇸 Spanish','locale': Locale('es')},
@@ -20,7 +21,8 @@ class HomeController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    print("init"); // widget saved on memory, not rendered
+    print("init");
+    print(data.read('preferedLocale') ?? 'n/a' ); // widget saved on memory, not rendered
   }
 
   @override
@@ -29,7 +31,9 @@ class HomeController extends GetxController{
     print("ready"); // widget already rendered
   }
 
-  updateLocale(Locale locale){
+  changeLanguage(Locale locale){
+    data.write('preferedLocale', locale.toString());
+    print(locale.toString());
     Get.back();
     Get.updateLocale(locale);
   }
