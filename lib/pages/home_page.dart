@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/controllers/home_controller.dart';
+import 'package:my_app/controllers/task_controller.dart';
+import 'package:my_app/models/task.dart';
 import 'package:my_app/pages/task_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/widgets/task_card.dart';
@@ -76,30 +78,14 @@ class HomePage extends StatelessWidget {
                         ],
                       )
                     ),
-                    Expanded( // Task List
-                      child: ScrollConfiguration(
-                        behavior: NoGlowBehaviour(),
-                        child: GetBuilder<HomeController>(
-                          id: 'taskList',
-                          builder: (_) => ListView(
-                            children: [
-                              TaskCard(title: 'Continue with Fernando\'s Flutter course', description: 'currently on chapter 09',),
-                              TaskCard(title: 'Take out the trash',),
-                              TaskCard(title: 'Continue with GetX course', description: 'on meedu.app, video 05',),
-                              TaskCard(title: 'Go for a walk with my dog' ),
-                              TaskCard(title: 'Submit my essay', description: '10 pages minimum',)
-                            ],
-                          ),
-                        ),
-                      )
-                    ),
+                    TaskList(),
                   ],
                 ),
               ),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Get.to(() => TaskPage(), transition: Transition.fadeIn);
+                Get.offNamed('/task');
               },
               child: Icon(Icons.add),
             ),
@@ -107,3 +93,36 @@ class HomePage extends StatelessWidget {
         });
   }
 }
+
+class TaskList extends StatelessWidget {
+  const TaskList({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded( // Task List
+      child: ScrollConfiguration(
+        behavior: NoGlowBehaviour(),
+        child: GetBuilder<HomeController>(
+          // init: TaskController(),
+          id: 'taskList',
+          builder: (home){
+              // home.onStatusChanged.listen(()=>{});
+              return ListView.builder(
+              itemCount: home.taskData.length,
+              itemBuilder: (context, index){
+                return TaskCard(
+                  title: home.taskData[index].title,
+                  description: home.taskData[index].description,                                  
+                  );
+              },
+            );
+          },
+        ),
+      )
+    );
+  }
+}
+
+// To Do: extract more widgets

@@ -28,7 +28,7 @@ class TaskPage extends StatelessWidget {
                       children: [
                         InkWell( // Back Arrow Icon
                           onTap: () {
-                            Get.back();
+                            Get.offNamed('/home');
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(24.0),
@@ -78,9 +78,13 @@ class TaskPage extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: (){
-              print('imma add the task');
               print('Title is: ${_title}, and description is: ${_description}.');
-              _.createTask(_title, _description);
+              if(_description != ''){
+                _.createTask(_title, _description);
+              }else{
+                _.createTask(_title, null);
+              }
+              Get.offNamed('/home');
             },
             child: Icon(Icons.check),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_app/localizations/my_translations.dart';
+import 'package:my_app/routes.dart';
 import 'pages/home_page.dart';
 
 void main() async {
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: HomePage(),
+      initialRoute:'/home',
+      getPages: routes(),
     );
   }
 }
