@@ -4,9 +4,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:my_app/localizations/my_translations.dart';
 import 'pages/home_page.dart';
 
-
 void main() async {
-  await GetStorage.init();
+  await GetStorage.init(); // Initializing storage driver using await
   runApp(const MyApp());
 }
 
@@ -15,10 +14,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetStorage data = GetStorage();
+    final GetStorage data = GetStorage(); // Getting the instance
+    var localePref = data.read('preferedLocale'); // Reading the key 'preferedLocale' from that instance, if it exist, it will return the value, if not, return null.
     return GetMaterialApp(
+      // Using the translations I did in the script /localizations/my_translations.dart
       translations: MyTranslations(),
-      locale: (data.read('preferedLocale') ?? '').isEmpty ? Get.deviceLocale : Locale(data.read('preferedLocale')),
+      // Down here I'm telling the app to either use the prefered language
+      // for the user stored in the device, or take the locale from the system.
+      locale: (localePref ?? '').isEmpty ? Get.deviceLocale : Locale(localePref),
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
