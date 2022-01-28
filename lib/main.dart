@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     final GetStorage data = GetStorage(); // Getting the instance
     var localePref = data.read('preferedLocale'); // Reading the key 'preferedLocale' from that instance, if it exist, it will return the value, if not, return null.
     return GetMaterialApp(
-      // Using the translations I did in the script /localizations/my_translations.dart
+      // Using the translations I did in the script /lib/localizations/my_translations.dart
       translations: MyTranslations(),
       // Down here I'm telling the app to either use the prefered language
       // for the user stored in the device, or take the locale from the system.
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       initialRoute:'/home',
-      getPages: routes(),
+      getPages: routes(), // using the routes defined in the file /lib/routes/routes.dart
     );
   }
 }

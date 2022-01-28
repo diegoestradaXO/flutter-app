@@ -13,6 +13,8 @@ class MyTranslations extends Translations {
       'taskCreatedSucceeded':'Task created succesfully!',
       'taskCreatedFailed':'Couldn\'t create the task, try again...',
       'taskDeletedMessage':'Task deleted successfully!',
+      'defaultTaskTitle':'Hello there! Welcome to the TaskApp 😛',
+      'defaultTaskDescription':'You can create a new task by pressing the floating button with a plus icon, or you can delete this task by pressing the trash icon.'
     },
     'es':{
       'languageSelect':'Escoge tu lenguaje',
@@ -23,6 +25,8 @@ class MyTranslations extends Translations {
       'taskCreatedSucceeded':'¡Tarea creada con éxito!',
       'taskCreatedFailed':'No se pudo crear la tarea, intenta otra vez...',
       'taskDeletedMessage':'¡Tarea eliminada con éxito!',
+      'defaultTaskTitle':'Hola hola! Bienvenido a la Task App😛',
+      'defaultTaskDescription':'Puedes crear una nueva tarea al presionar el botón flotante con el icono (+), o puedes eliminar esta tarea presionando el bote de basura'
     }
   };
   // mod this
