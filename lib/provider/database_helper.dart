@@ -24,11 +24,18 @@ class DatabaseHelper {
     return taskId;
   }
 
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
+  Future<List<Map<String, dynamic>>> getTasks() async {
     Database db = await database();
     var res = await db.query('tasks', orderBy: "id DESC");
     return res;
   }
+
+  Future<int> delete(int id) async {
+    Database db = await database();
+    return await db.delete('tasks', where: 'id = ?', whereArgs: [id]);
+  }
+
+
 
 
 }

@@ -12,19 +12,16 @@ import 'package:my_app/provider/database_helper.dart';
 
 
 class HomeController extends GetxController{
+
   RxList<Task> _taskData = <Task>[].obs;
   final allTasks = StreamController<Task>.broadcast();
-  
-
-  final GetStorage data = GetStorage();
-
-  get taskData => _taskData;
-  
   final _locales = [
     {'name':'🇺🇸 English','locale': Locale('en')},
     {'name':'🇪🇸 Spanish','locale': Locale('es')},
   ];
+  final GetStorage data = GetStorage();
 
+  get taskData => _taskData;
   get locales => _locales;
 
   @override
@@ -33,10 +30,16 @@ class HomeController extends GetxController{
     super.onInit();
     print(data.read('preferedLocale') ?? 'n/a' ); // widget saved on memory, not rendered
   }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+  }
   
   void _getData() async {
     DatabaseHelper _dbhelper = DatabaseHelper();
-    await _dbhelper.queryAllRows().then((value){
+    await _dbhelper.getTasks().then((value){
         value.forEach((element) {
           _taskData.add(Task(id: element['id'], title: element['title'], description: element['description']));
          }
@@ -51,10 +54,11 @@ class HomeController extends GetxController{
     update(['taskList']);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    print("ready"); // widget already rendered
+  void deleteTask(int id) async{
+    DatabaseHelper _dbhelper = DatabaseHelper();
+    await _dbhelper.delete(id);
+    _taskData.removeWhere((element) => element.id == id);
+    updateTask();
   }
 
   changeLanguage(Locale locale){

@@ -113,6 +113,7 @@ class TaskList extends StatelessWidget {
               itemCount: home.taskData.length,
               itemBuilder: (context, index){
                 return TaskCard(
+                  id: home.taskData[index].id,
                   title: home.taskData[index].title,
                   description: home.taskData[index].description,                                  
                   );

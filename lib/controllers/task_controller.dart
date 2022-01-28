@@ -17,7 +17,6 @@ class TaskController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    print('sup, im here');
   }
 
   createTask (String title, String? description) async {
