@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/controllers/home_controller.dart';
-import 'package:my_app/controllers/task_controller.dart';
-import 'package:my_app/models/task.dart';
-import 'package:my_app/pages/task_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/widgets/task_card.dart';
 
@@ -126,5 +123,3 @@ class TaskList extends StatelessWidget {
     );
   }
 }
-
-// To Do: extract more widgets

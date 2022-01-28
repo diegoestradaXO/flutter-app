@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/controllers/task_controller.dart';
-import 'home_page.dart';
 
 class TaskPage extends StatelessWidget {
   
@@ -76,17 +74,37 @@ class TaskPage extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: (){
-              print('Title is: ${_title}, and description is: ${_description}.');
-              if(_description != ''){
-                _.createTask(_title, _description);
-              }else{
-                _.createTask(_title, null);
-              }
-              Get.offNamed('/home');
+          floatingActionButton: GetBuilder<TaskController>(
+            builder: (task){
+              return FloatingActionButton(
+              onPressed: (){
+                var snackMessage = '';
+                print('Title is: ${_title}, and description is: ${_description}.');
+                if(_title != ''){
+                  if(_description != ''){
+                  task.createTask(_title, _description);
+                  }else{
+                  task.createTask(_title, null);
+                  }
+                  snackMessage = 'taskCreatedSucceeded'.tr;
+                } else {
+                  snackMessage = 'taskCreatedFailed'.tr;
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(snackMessage),
+                    duration: const Duration(milliseconds: 2000),
+                    action: SnackBarAction(
+                    label: 'OK',
+                    onPressed: () {},
+                    )
+                  )
+                );
+                Get.offNamed('/home');
             },
-            child: Icon(Icons.check),
+              child: Icon(Icons.check),
+            );
+            },
           ),
         );
       },

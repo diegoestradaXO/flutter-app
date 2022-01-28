@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:my_app/controllers/home_controller.dart';
 
 class TaskCard extends StatelessWidget {
@@ -62,6 +60,16 @@ class TaskCard extends StatelessWidget {
               return IconButton(
               onPressed: (){
                 card.deleteTask(id);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('taskDeletedMessage'.tr),
+                    duration: const Duration(milliseconds: 2000),
+                    action: SnackBarAction(
+                    label: 'OK',
+                    onPressed: () {},
+                    )
+                  )
+                );
                 print('Task deleted');
               }, 
               icon: Icon(Icons.delete),
