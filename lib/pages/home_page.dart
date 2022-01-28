@@ -115,7 +115,8 @@ class TaskList extends StatelessWidget {
                 return TaskCard(
                   id: home.taskData[index].id,
                   title: home.taskData[index].title,
-                  description: home.taskData[index].description,                                  
+                  description: home.taskData[index].description,       
+                  date: home.taskData[index].date,                           
                   );
               },
             );

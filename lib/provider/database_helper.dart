@@ -10,7 +10,7 @@ class DatabaseHelper {
       join(await getDatabasesPath(), 'tasksApp.db'),
       onCreate: (db, version) async {
         // Run the CREATE TABLE statement on the database.
-        await db.execute('CREATE TABLE tasks(id INTEGER PRIMARY KEY, title TEXT, description TEXT)',);
+        await db.execute('CREATE TABLE tasks(id INTEGER PRIMARY KEY, title TEXT, description TEXT, date TEXT)',);
         return Future.value();
       },
       version: 1,

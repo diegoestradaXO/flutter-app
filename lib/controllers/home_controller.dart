@@ -41,7 +41,7 @@ class HomeController extends GetxController{
     DatabaseHelper _dbhelper = DatabaseHelper();
     await _dbhelper.getTasks().then((value){
         value.forEach((element) {
-          _taskData.add(Task(id: element['id'], title: element['title'], description: element['description']));
+          _taskData.add(Task(id: element['id'], title: element['title'], description: element['description'], date: element['date']));
          }
         );
       }

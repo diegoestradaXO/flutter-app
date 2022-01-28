@@ -9,11 +9,13 @@ class TaskCard extends StatelessWidget {
   final int id;
   final String title;
   final String? description;
+  final String date;
   TaskCard({
     // required this.placeholder,
     required this.id,
     required this.title,
-    this.description
+    this.description,
+    required this.date
   });
 
 
@@ -29,6 +31,12 @@ class TaskCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+              Text(
+                date,
+                style: TextStyle(
+                  fontSize: 13,
+                ),
+              ),
               Text(
                 title,
                 style: TextStyle(
@@ -65,6 +73,14 @@ class TaskCard extends StatelessWidget {
       ),
       width: double.infinity,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 3,
+          blurRadius: 7,
+          offset: Offset(0,3)
+          )
+        ],
         borderRadius: BorderRadius.circular(20.0),
         color: Color(0xffF0F0EB)
        ),
