@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      initialRoute:'/home',
+      initialRoute:'/welcome',
       getPages: routes(), // using the routes defined in the file /lib/routes/routes.dart
     );
   }

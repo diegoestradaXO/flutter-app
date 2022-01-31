@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/controllers/task_controller.dart';
+import 'package:my_app/pages/home_page.dart';
 
 class TaskPage extends StatelessWidget {
   
@@ -24,7 +25,7 @@ class TaskPage extends StatelessWidget {
                       children: [
                         InkWell( // Back Arrow Icon
                           onTap: () {
-                            Get.offNamed('/home');
+                            Get.to(HomePage(), transition: Transition.fadeIn);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(24.0),
@@ -98,7 +99,7 @@ class TaskPage extends StatelessWidget {
                     )
                   )
                 );
-                Get.offNamed('/home');
+                Get.to(HomePage(), transition: Transition.fadeIn);
             },
               child: Icon(Icons.check),
             );
