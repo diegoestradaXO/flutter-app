@@ -68,6 +68,8 @@ flutter:
 
   assets:
     - assets/images/
+    - lib/localizations/en.json
+    - lib/localizations/es.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

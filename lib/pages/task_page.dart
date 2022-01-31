@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/controllers/task_controller.dart';
 
 class TaskPage extends StatelessWidget {
@@ -10,7 +9,6 @@ class TaskPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tr = AppLocalizations.of(context);
     return GetBuilder<TaskController>(
       init: TaskController(),
       builder: (_){

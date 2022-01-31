@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/controllers/home_controller.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/widgets/task_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,7 +34,6 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomeController>(
         init: HomeController(),
         builder: (_) {
-          var tr = AppLocalizations.of(context);
           return Scaffold(
             body: SafeArea(
               child: Container(
