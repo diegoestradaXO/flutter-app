@@ -58,8 +58,11 @@ class HomeController extends GetxController {
   changeTheme() {
     if (Get.isDarkMode) {
       Get.changeThemeMode(ThemeMode.light);
+      data.write('darkmode', false);
     } else {
       Get.changeThemeMode(ThemeMode.dark);
+      data.write('darkmode', true);
     }
+    print(data.read('darkmode'));
   }
 }

@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blueGrey, brightness: Brightness.light, backgroundColor: Colors.white),
       darkTheme: ThemeData(primarySwatch: Colors.blueGrey, brightness: Brightness.dark),
+      themeMode: (data.read('darkmode') ?? false) ? ThemeMode.dark : ThemeMode.light,
       initialRoute:'/welcome',
       getPages: routes(), // using the routes defined in the file /lib/routes/routes.dart
     );

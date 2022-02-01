@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
                                   onPressed: () {
                                     _.changeTheme();
                                   },
-                                  child: Icon(Icons.lightbulb)),
+                                  child: Icon(Icons.dark_mode)),
                             )
                             ],
                           ),
