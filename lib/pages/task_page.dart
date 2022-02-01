@@ -48,8 +48,7 @@ class TaskPage extends StatelessWidget {
                             ),
                           style: TextStyle(
                               fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF2e2f43)),
+                              fontWeight: FontWeight.bold,)
                           ),
                         ),
                       ],

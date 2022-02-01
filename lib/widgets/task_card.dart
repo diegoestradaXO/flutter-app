@@ -90,7 +90,7 @@ class TaskCard extends StatelessWidget {
           )
         ],
         borderRadius: BorderRadius.circular(20.0),
-        color: Color(0xffF0F0EB)
+        color: context.theme.backgroundColor
        ),
       padding: EdgeInsets.symmetric(
         vertical: 32.0,

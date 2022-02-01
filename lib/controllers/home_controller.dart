@@ -14,15 +14,14 @@ class HomeController extends GetxController{
     {'name':'🇪🇸 Spanish','locale': Locale('es')},
   ];
   final GetStorage data = GetStorage();
-
   get taskData => _taskData;
   get locales => _locales;
 
   @override
   void onInit() {
     _getData();
-    super.onInit();
-    print(data.read('preferedLocale') ?? 'n/a' ); // widget saved on memory, not rendered
+    super.onInit();// widget saved on memory, not rendered
+
   }
   
   void _getData() async {
@@ -55,5 +54,4 @@ class HomeController extends GetxController{
     Get.back();
     Get.updateLocale(locale);
   }
-
 }

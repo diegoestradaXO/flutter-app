@@ -23,9 +23,8 @@ class MyApp extends StatelessWidget {
       // for the user stored in the device, or take the locale from the system.
       locale: (localePref ?? '').isEmpty ? Get.deviceLocale : Locale(localePref),
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blueGrey, brightness: Brightness.light, backgroundColor: Colors.white),
+      darkTheme: ThemeData(primarySwatch: Colors.blueGrey, brightness: Brightness.dark),
       initialRoute:'/welcome',
       getPages: routes(), // using the routes defined in the file /lib/routes/routes.dart
     );
