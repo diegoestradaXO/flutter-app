@@ -75,6 +75,7 @@ class TaskPage extends StatelessWidget {
           floatingActionButton: GetBuilder<TaskController>(
             builder: (task){
               return FloatingActionButton(
+              backgroundColor: Colors.blueGrey,
               onPressed: (){
                 var snackMessage = '';
                 print('Title is: ${_title}, and description is: ${_description}.');
@@ -100,7 +101,7 @@ class TaskPage extends StatelessWidget {
                 );
                 Get.to(HomePage(), transition: Transition.fadeIn);
             },
-              child: Icon(Icons.check),
+              child: Icon(Icons.check, color: Colors.white,),
             );
             },
           ),

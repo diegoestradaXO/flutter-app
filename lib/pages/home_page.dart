@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_app/controllers/home_controller.dart';
-import 'package:my_app/themes/themes.dart';
 import 'package:my_app/widgets/task_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,7 +47,7 @@ class HomePage extends StatelessWidget {
                     width: 150.0,
                     height: 150.0,
                     decoration: BoxDecoration(
-                        color: Colors.blueGrey,
+                        color: context.theme.primaryColor,
                         borderRadius: BorderRadius.circular(100)),
                     margin: EdgeInsets.only(top: 30, bottom: 30),
                     child: Image.asset(
@@ -84,11 +83,7 @@ class HomePage extends StatelessWidget {
                               margin: EdgeInsets.only(left: 10),
                               child: ElevatedButton(
                                   onPressed: () {
-                                    if(Get.isDarkMode){
-                                      Get.changeThemeMode(ThemeMode.light);
-                                    } else {
-                                      Get.changeThemeMode(ThemeMode.dark);
-                                    }
+                                    _.changeTheme();
                                   },
                                   child: Icon(Icons.lightbulb)),
                             )
@@ -142,10 +137,13 @@ class HomePage extends StatelessWidget {
               ),
             ),
             floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.blueGrey,
               onPressed: () {
                 Get.offNamed('/task');
               },
-              child: Icon(Icons.add),
+              child: Icon(Icons.add,
+                color: Colors.white,
+              ),
             ),
           );
         });
