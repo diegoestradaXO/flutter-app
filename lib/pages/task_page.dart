@@ -21,7 +21,7 @@ class TaskPage extends StatelessWidget {
                       children: [
                         InkWell( // Back Arrow Icon
                           onTap: () {
-                            Get.to(HomePage(), transition: Transition.fadeIn);
+                            Get.off(HomePage(), transition: Transition.fadeIn);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(24.0),
@@ -104,7 +104,7 @@ class CheckButton extends StatelessWidget {
               )
             )
           );
-          Get.to(HomePage(), transition: Transition.fadeIn);
+          Get.off(HomePage(), transition: Transition.fadeIn);
       },
         child: Icon(Icons.check, color: Colors.white,),
       );
