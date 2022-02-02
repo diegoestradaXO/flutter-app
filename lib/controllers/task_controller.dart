@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
@@ -7,9 +8,16 @@ import 'package:my_app/provider/database_helper.dart';
 
 class TaskController extends GetxController {
 
-  HomeController _homeController = HomeController();
+  // HomeController _homeController = HomeController();
+
   
   int _taskId = 0;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  String title = '';
+  String description = '';
+  late final _homeController;
+
 
   get taskId => _taskId;
 
@@ -18,6 +26,17 @@ class TaskController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    final initHome = Get.put(HomeController);
+    _homeController = Get.find<HomeController>();
+    print('task on init');
+  }
+
+  setTitle(String value){
+    title = value;
+  }
+
+  setDescription(String value){
+    description = value;
   }
 
   createTask (String title, String? description) async {
@@ -32,6 +51,8 @@ class TaskController extends GetxController {
       _homeController.taskData.add(_newTask);
       _homeController.updateTask();
     }
+    titleController.clear();
+    descriptionController.clear();    
   }
   // ToDo: delteTask() 
   

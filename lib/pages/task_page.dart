@@ -4,10 +4,6 @@ import 'package:my_app/controllers/task_controller.dart';
 import 'package:my_app/pages/home_page.dart';
 
 class TaskPage extends StatelessWidget {
-  
-  String _title = '';
-  String _description = '';
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TaskController>(
@@ -38,10 +34,8 @@ class TaskPage extends StatelessWidget {
                         ),
                         Expanded( // Title Text Field
                           child: TextField(
-                            onSubmitted: (value){
-                              _title = value;
-                              print(_title);
-                            },
+                            controller: _.titleController,
+                            onChanged: _.setTitle,
                             decoration: InputDecoration(
                             hintText: 'taskTitleHint'.tr,
                             border: InputBorder.none,
@@ -57,10 +51,8 @@ class TaskPage extends StatelessWidget {
                   Padding( // Description Text Field
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
-                      onSubmitted: (value){
-                        _description = value;
-                        print(_description);
-                      },
+                      controller: _.descriptionController,
+                      onChanged: _.setDescription,
                       decoration: InputDecoration(
                         hintText: 'taskDescHint'.tr,
                         border: InputBorder.none,
@@ -72,41 +64,49 @@ class TaskPage extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: GetBuilder<TaskController>(
-            builder: (task){
-              return FloatingActionButton(
-              backgroundColor: Colors.blueGrey,
-              onPressed: (){
-                var snackMessage = '';
-                print('Title is: ${_title}, and description is: ${_description}.');
-                if(_title != ''){
-                  if(_description != ''){
-                  task.createTask(_title, _description);
-                  }else{
-                  task.createTask(_title, null);
-                  }
-                  snackMessage = 'taskCreatedSucceeded'.tr;
-                } else {
-                  snackMessage = 'taskCreatedFailed'.tr;
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(snackMessage),
-                    duration: const Duration(milliseconds: 2000),
-                    action: SnackBarAction(
-                    label: 'OK',
-                    onPressed: () {},
-                    )
-                  )
-                );
-                Get.to(HomePage(), transition: Transition.fadeIn);
-            },
-              child: Icon(Icons.check, color: Colors.white,),
-            );
-            },
-          ),
+          floatingActionButton: CheckButton(),
         );
       },
     );
+  }
+}
+
+class CheckButton extends StatelessWidget {
+  const CheckButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final task = Get.find<TaskController>();
+    return FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
+        onPressed: (){
+          var snackMessage = '';
+          print('Title is: ${task.title}, and description is: ${task.description}.');
+          if(task.title != ''){
+            if(task.description != ''){
+            task.createTask(task.title, task.description);
+            }else{
+            task.createTask(task.title, null);
+            }
+            snackMessage = 'taskCreatedSucceeded'.tr;
+          } else {
+            snackMessage = 'taskCreatedFailed'.tr;
+          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(snackMessage),
+              duration: const Duration(milliseconds: 2000),
+              action: SnackBarAction(
+              label: 'OK',
+              onPressed: () {},
+              )
+            )
+          );
+          Get.to(HomePage(), transition: Transition.fadeIn);
+      },
+        child: Icon(Icons.check, color: Colors.white,),
+      );
   }
 }

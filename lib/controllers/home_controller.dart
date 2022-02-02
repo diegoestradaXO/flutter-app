@@ -20,6 +20,7 @@ class HomeController extends GetxController {
   void onInit() {
     _getData();
     super.onInit(); // widget saved on memory, not rendered
+    print('home controller');
   }
 
   void _getData() async {
