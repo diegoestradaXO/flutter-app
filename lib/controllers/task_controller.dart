@@ -14,9 +14,12 @@ class TaskController extends GetxController {
   int _taskId = 0;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  String title = '';
-  String description = '';
+  String _title = '';
+  String _description = '';
   late final _homeController;
+
+  get title => _title;
+  get description => _description;
 
 
   get taskId => _taskId;
@@ -32,11 +35,11 @@ class TaskController extends GetxController {
   }
 
   setTitle(String value){
-    title = value;
+    _title = value;
   }
 
   setDescription(String value){
-    description = value;
+    _description = value;
   }
 
   createTask (String title, String? description) async {
@@ -52,8 +55,8 @@ class TaskController extends GetxController {
       _homeController.updateTask();
     }
     titleController.clear();
-    descriptionController.clear();    
+    descriptionController.clear();   
+    _title = '';
+    _description = ''; 
   }
-  // ToDo: delteTask() 
-  
 }
