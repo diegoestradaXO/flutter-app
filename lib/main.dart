@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       themeMode: (data.read('darkmode') ?? false) ? ThemeMode.dark : ThemeMode.light,
       initialRoute:'/welcome',
       getPages: routes(), // using the routes defined in the file /lib/routes/routes.dart
+      debugShowCheckedModeBanner: false,
     );
   }
 }
